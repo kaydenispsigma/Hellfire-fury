@@ -663,13 +663,13 @@ local animationIdsToStop = {
 
 local replacementAnimations = {
 
-    ["18716472014"] = "rbxassetid://17889458563", --punch1
+    ["18715812734"] = "rbxassetid://17889458563", --punch1
 
-    ["18716475828"] = "rbxassetid://17889461810", --punch2
+    ["18715817240"] = "rbxassetid://17889461810", --punch2
 
-    ["18716477298"] = "rbxassetid://17889471098", --punch3
+    ["18715818827"] = "rbxassetid://17889471098", --punch3
 
-    ["18716478642"] = "rbxassetid://17889290569", --punch4
+    ["18715820628"] = "rbxassetid://17889290569", --punch4
 
     ["17859015788"] = "rbxassetid://12684185971", --downslam finisher
 
@@ -708,7 +708,6 @@ local function playReplacementAnimation(animationId)
         local Anim = humanoid:LoadAnimation(AnimAnim)
 
         Anim:Play()
-
        
 
         Anim.Stopped:Connect(function()
@@ -849,7 +848,7 @@ end
 
 --[[Idle Animation]]
 
-local animationId = "rbxassetid://17109012516" -- Replace with your animation ID
+local animationId = "rbxassetid://17124061663" -- Replace with your animation ID
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
@@ -887,7 +886,7 @@ local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 local animator = humanoid:WaitForChild("Animator")
 
-local animationId = "rbxassetid://15962326593" -- Replace with your animation ID
+local animationId = "rbxassetid://95575238948327" -- Replace with your animation ID
 local animation = Instance.new("Animation")
 animation.AnimationId = animationId
 
