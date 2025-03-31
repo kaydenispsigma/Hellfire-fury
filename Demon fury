@@ -104,13 +104,9 @@ findGuiAndSetText()
 
 local animationId = 10468665991
 
-
 local player = game.Players.LocalPlayer
-
 local character = player.Character or player.CharacterAdded:Wait()
-
 local humanoid = character:WaitForChild("Humanoid")
-
 
 -- Add ParticleEmitters to the Right Arm
 local rightArm = character:FindFirstChild("Right Arm") or character:FindFirstChild("RightUpperArm")
@@ -123,7 +119,7 @@ if rightArm then
     mysticFlames.Size = NumberSequence.new({NumberSequenceKeypoint.new(0, 1), NumberSequenceKeypoint.new(1, 3)})
     mysticFlames.Enabled = false -- Initially disabled
     mysticFlames.Parent = rightArm
-    
+
     -- Fiery Justice ParticleEmitter
     local fieryJustice = Instance.new("ParticleEmitter")
     fieryJustice.Texture = "rbxassetid://99797381"
@@ -134,49 +130,32 @@ if rightArm then
     fieryJustice.Parent = rightArm
 end
 
-
 -- Animation Handling
 local function onAnimationPlayed(animationTrack)
-
     if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
-
-
         local p = game.Players.LocalPlayer
-
         local Humanoid = p.Character:WaitForChild("Humanoid")
 
-
+        -- Stop all existing animations
         for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
-
             animTrack:Stop()
-
         end
 
-
         local AnimAnim = Instance.new("Animation")
-
-        AnimAnim.AnimationId = "rbxassetid://8181182675"
-
+        AnimAnim.AnimationId = "rbxassetid://10468665991"
         local Anim = Humanoid:LoadAnimation(AnimAnim)
 
-
         local startTime = 0
-
-
         Anim:Play()
-
         Anim:AdjustSpeed(0.1)
-
         Anim.TimePosition = startTime
-
         Anim:AdjustSpeed(0.9)
 
-        
         -- Enable ParticleEmitters during animation
         if rightArm then
             mysticFlames.Enabled = true
             fieryJustice.Enabled = true
-            
+
             -- Disable after a short delay (adjust timing as needed)
             delay(2, function()
                 mysticFlames.Enabled = false
