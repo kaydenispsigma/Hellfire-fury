@@ -1,4 +1,4 @@
---Move & Ultimate Names
+-- Move & Ultimate Names
 
 local player = game.Players.LocalPlayer
 
@@ -108,26 +108,17 @@ local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 
--- Add ParticleEmitters to the Right Arm
+-- Add Flame VFX to the Right Arm
 local rightArm = character:FindFirstChild("Right Arm") or character:FindFirstChild("RightUpperArm")
-if rightArm then
-    -- Mystic Flames ParticleEmitter
-    local mysticFlames = Instance.new("ParticleEmitter")
-    mysticFlames.Texture = "rbxassetid://241511828"
-    mysticFlames.Rate = 25
-    mysticFlames.Lifetime = NumberRange.new(0.8, 1.2)
-    mysticFlames.Size = NumberSequence.new({NumberSequenceKeypoint.new(0, 1), NumberSequenceKeypoint.new(1, 3)})
-    mysticFlames.Enabled = false -- Initially disabled
-    mysticFlames.Parent = rightArm
+local flameEffect = nil
 
-    -- Fiery Justice ParticleEmitter
-    local fieryJustice = Instance.new("ParticleEmitter")
-    fieryJustice.Texture = "rbxassetid://99797381"
-    fieryJustice.Rate = 20
-    fieryJustice.Lifetime = NumberRange.new(0.5, 1)
-    fieryJustice.Color = ColorSequence.new(Color3.fromRGB(255, 80, 80))
-    fieryJustice.Enabled = false -- Initially disabled
-    fieryJustice.Parent = rightArm
+if rightArm then
+    -- Create a Flame VFX
+    flameEffect = Instance.new("Fire")  -- Fire is the built-in flame effect
+    flameEffect.Size = 5  -- Adjust the size of the fire
+    flameEffect.Heat = 10  -- Adjust the heat of the flame
+    flameEffect.Parent = rightArm  -- Parent the fire to the right arm
+    flameEffect.Enabled = false  -- Initially, the fire is disabled
 end
 
 -- Animation Handling
@@ -151,15 +142,13 @@ local function onAnimationPlayed(animationTrack)
         Anim.TimePosition = startTime
         Anim:AdjustSpeed(0.9)
 
-        -- Enable ParticleEmitters during animation
-        if rightArm then
-            mysticFlames.Enabled = true
-            fieryJustice.Enabled = true
+        -- Enable Fire VFX during animation
+        if flameEffect then
+            flameEffect.Enabled = true
 
             -- Disable after a short delay (adjust timing as needed)
             delay(2, function()
-                mysticFlames.Enabled = false
-                fieryJustice.Enabled = false
+                flameEffect.Enabled = false
             end)
         end
     end
@@ -848,7 +837,7 @@ end
 
 --[[Idle Animation]]
 
-local animationId = "rbxassetid://17124061663" -- Replace with your animation ID
+local animationId = "rbxassetid://18933416371" -- Replace with your animation ID
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
