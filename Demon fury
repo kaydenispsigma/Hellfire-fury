@@ -30,7 +30,7 @@ local baseButton = hotbarFrame:FindFirstChild("2").Base
 
 local ToolName = baseButton.ToolName
 
-ToolName.Text = "Unnamed"
+ToolName.Text = "Flaming barrade"
 
 local player = game.Players.LocalPlayer
 
@@ -46,7 +46,7 @@ local baseButton = hotbarFrame:FindFirstChild("3").Base
 
 local ToolName = baseButton.ToolName
 
-ToolName.Text = "Unnamed"
+ToolName.Text = "Flaming Kick"
 
 local player = game.Players.LocalPlayer
 
@@ -62,7 +62,7 @@ local baseButton = hotbarFrame:FindFirstChild("4").Base
 
 local ToolName = baseButton.ToolName
 
-ToolName.Text = "Unnamed"
+ToolName.Text = "Burning Uppercut"
 
 local Players = game:GetService("Players")
 
@@ -156,185 +156,212 @@ end
 
 --[[END OF MOVE 1 ANIM]]
 
---[[Move 2]]
-
-
-humanoid.AnimationPlayed:Connect(onAnimationPlayed)
-
+--[[Move 2: Flaming Barrade]]
 
 local animationId = 10466974800
-
-
 local player = game.Players.LocalPlayer
-
 local character = player.Character or player.CharacterAdded:Wait()
-
 local humanoid = character:WaitForChild("Humanoid")
 
-
+-- Function to handle the animation logic
 local function onAnimationPlayed(animationTrack)
-
     if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+        -- Stop all currently playing animations
+        for _, animTrack in pairs(humanoid:GetPlayingAnimationTracks()) do
+            animTrack:Stop()
+        end
 
+        -- Play the new animation for Move 2
+        local AnimAnim = Instance.new("Animation")
+        AnimAnim.AnimationId = "rbxassetid://18181589384"  -- The new animation ID for Flaming Barrade
 
-local p = game.Players.LocalPlayer
+        local Anim = humanoid:LoadAnimation(AnimAnim)
 
-local Humanoid = p.Character:WaitForChild("Humanoid")
+        local startTime = 0  -- Starting time for the animation (optional to adjust)
+        
+        Anim:Play()
+        Anim:AdjustSpeed(1)  -- You can adjust the speed if needed
+        Anim.TimePosition = startTime  -- You can also set the start time if you want
+        Anim:AdjustSpeed(1)  -- Adjust speed again, in case you want to tweak it later
 
+        -- Add Fire Effects to the character's torso and arms
 
-for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+        -- Massive Fire on Torso
+        local torso = character:FindFirstChild("UpperTorso") or character:FindFirstChild("Torso")
+        if torso then
+            local torsoFire = Instance.new("Fire")
+            torsoFire.Size = 10  -- Large fire for the torso
+            torsoFire.Heat = 50  -- Intense heat for the fire
+            torsoFire.Parent = torso
+        end
 
-    animTrack:Stop()
+        -- Small Fire on Right Arm
+        local rightArm = character:FindFirstChild("Right Arm") or character:FindFirstChild("RightUpperArm")
+        if rightArm then
+            local rightArmFire = Instance.new("Fire")
+            rightArmFire.Size = 2  -- Small fire for the arm
+            rightArmFire.Heat = 15  -- Less intense heat for the arm
+            rightArmFire.Parent = rightArm
+        end
 
-end
-
-
-local AnimAnim = Instance.new("Animation")
-
-AnimAnim.AnimationId = "rbxassetid://18181589384"
-
-local Anim = Humanoid:LoadAnimation(AnimAnim)
-
-
-local startTime = 0
-
-
-Anim:Play()
-
-Anim:AdjustSpeed(1)
-
-Anim.TimePosition = startTime
-
-Anim:AdjustSpeed(1)
-
-
+        -- Small Fire on Left Arm
+        local leftArm = character:FindFirstChild("Left Arm") or character:FindFirstChild("LeftUpperArm")
+        if leftArm then
+            local leftArmFire = Instance.new("Fire")
+            leftArmFire.Size = 2  -- Small fire for the arm
+            leftArmFire.Heat = 15  -- Less intense heat for the arm
+            leftArmFire.Parent = leftArm
+        end
     end
-
 end
+
+-- Connect the AnimationPlayed event to the function
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
 
 --[[END OF MOVE 2 ANIM]]
 
---[[Move 3]]
 
-
-humanoid.AnimationPlayed:Connect(onAnimationPlayed)
-
+--[[Move 3: New Animation with Flame on Right Leg]]
 
 local animationId = 10471336737
-
-
 local player = game.Players.LocalPlayer
-
 local character = player.Character or player.CharacterAdded:Wait()
-
 local humanoid = character:WaitForChild("Humanoid")
 
-
+-- Function to handle the animation logic
 local function onAnimationPlayed(animationTrack)
-
     if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+        -- Stop all currently playing animations
+        for _, animTrack in pairs(humanoid:GetPlayingAnimationTracks()) do
+            animTrack:Stop()
+        end
 
+        -- Play the new animation for Move 3
+        local AnimAnim = Instance.new("Animation")
+        AnimAnim.AnimationId = "rbxassetid://17838619895"  -- The new animation ID for Move 3
 
-local p = game.Players.LocalPlayer
+        local Anim = humanoid:LoadAnimation(AnimAnim)
 
-local Humanoid = p.Character:WaitForChild("Humanoid")
+        local startTime = 0.3  -- Starting time for the animation (optional to adjust)
+        
+        Anim:Play()
+        Anim:AdjustSpeed(0)  -- Adjust speed (could be changed)
+        Anim.TimePosition = startTime  -- You can also set the start time if you want
+        Anim:AdjustSpeed(1)  -- Adjust speed again, in case you want to tweak it later
 
+        -- Add Fire Effects to the character's right leg only
 
-for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+        -- Fire on Right Leg
+        local rightLeg = character:FindFirstChild("Right Leg") or character:FindFirstChild("RightUpperLeg")
+        if rightLeg then
+            local rightLegFire = Instance.new("Fire")
+            rightLegFire.Size = 3  -- Fire size for the right leg
+            rightLegFire.Heat = 20  -- Intensity of fire on the right leg
+            rightLegFire.Parent = rightLeg
+        end
 
-    animTrack:Stop()
-
-end
-
-
-local AnimAnim = Instance.new("Animation")
-
-AnimAnim.AnimationId = "rbxassetid://17838619895"
-
-local Anim = Humanoid:LoadAnimation(AnimAnim)
-
-
-local startTime = 0.3
-
-
-Anim:Play()
-
-Anim:AdjustSpeed(0)
-
-Anim.TimePosition = startTime
-
-Anim:AdjustSpeed(1)
-
-
-delay(1.8, function()
-
-    Anim:Stop()
-
-end)
-
-
+        -- Stop the animation after a delay (adjust timing as needed)
+        delay(1.8, function()
+            Anim:Stop()
+        end)
     end
-
 end
+
+-- Connect the AnimationPlayed event to the function
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
 
 --[[END OF MOVE 3 ANIM]]
 
---[[Move 4]]
-
-
-humanoid.AnimationPlayed:Connect(onAnimationPlayed)
-
+--[[Move 4: Animation and Fire Effects on Torso and Legs]]
 
 local animationId = 12510170988
-
-
 local player = game.Players.LocalPlayer
-
 local character = player.Character or player.CharacterAdded:Wait()
-
 local humanoid = character:WaitForChild("Humanoid")
 
-
-local function onAnimationPlayed(animationTrack)
-
-    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
-
-local p = game.Players.LocalPlayer
-
-local Humanoid = p.Character:WaitForChild("Humanoid")
-
-
-for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
-
-    animTrack:Stop()
-
-end
-
-
-local AnimAnim = Instance.new("Animation")
-
-AnimAnim.AnimationId = "rbxassetid://16515850153"
-
-local Anim = Humanoid:LoadAnimation(AnimAnim)
-
-
-local startTime = 0
-
-
-Anim:Play()
-
-Anim:AdjustSpeed(0)
-
-Anim.TimePosition = startTime
-
-Anim:AdjustSpeed(1)
-
-
+-- Add fire effects to torso and legs
+local function addFireEffects()
+    -- Fire on Torso
+    local torso = character:FindFirstChild("UpperTorso") or character:FindFirstChild("Torso")
+    if torso then
+        local torsoFire = Instance.new("Fire")
+        torsoFire.Size = 10
+        torsoFire.Heat = 10
+        torsoFire.Parent = torso
     end
-
+    
+    -- Fire on Right Leg
+    local rightLeg = character:FindFirstChild("Right Leg")
+    if rightLeg then
+        local rightLegFire = Instance.new("Fire")
+        rightLegFire.Size = 7
+        rightLegFire.Heat = 7
+        rightLegFire.Parent = rightLeg
+    end
+    
+    -- Fire on Left Leg
+    local leftLeg = character:FindFirstChild("Left Leg")
+    if leftLeg then
+        local leftLegFire = Instance.new("Fire")
+        leftLegFire.Size = 7
+        leftLegFire.Heat = 7
+        leftLegFire.Parent = leftLeg
+    end
 end
 
---[[END OF MOVE 4 ANIM]]
+-- Function to handle the animation logic
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+        -- Stop all currently playing animations
+        for _, animTrack in pairs(humanoid:GetPlayingAnimationTracks()) do
+            animTrack:Stop()
+        end
+
+        -- Load the new animation for Move 4
+        local AnimAnim = Instance.new("Animation")
+        AnimAnim.AnimationId = "rbxassetid://16515850153"
+        local Anim = humanoid:LoadAnimation(AnimAnim)
+
+        local startTime = 0
+        Anim:Play()
+        Anim:AdjustSpeed(0)
+        Anim.TimePosition = startTime
+        Anim:AdjustSpeed(1)
+
+        -- Add fire effects to the torso and legs
+        addFireEffects()
+
+        -- Optionally, remove the fire after the animation is over (after a delay)
+        delay(2, function()
+            -- Remove the fire (if needed)
+            if torso then
+                for _, child in pairs(torso:GetChildren()) do
+                    if child:IsA("Fire") then
+                        child:Destroy()
+                    end
+                end
+            end
+            if rightLeg then
+                for _, child in pairs(rightLeg:GetChildren()) do
+                    if child:IsA("Fire") then
+                        child:Destroy()
+                    end
+                end
+            end
+            if leftLeg then
+                for _, child in pairs(leftLeg:GetChildren()) do
+                    if child:IsA("Fire") then
+                        child:Destroy()
+                    end
+                end
+            end
+        end)
+    end
+end
+
+-- Connect the animation played function to the humanoid's AnimationPlayed event
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
 
 --[[Wall combo]]
 
@@ -822,7 +849,7 @@ local humanoid = character:WaitForChild("Humanoid")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 -- Messages to send
-local messages = {"the fire is...", "ASORBING MEEEE", "AHHHHHHHHH THE FIRE IS ASORBING MY BODY", "MY BODY IS AS HIT AS HELLLLL"}
+local messages = {"the fire is...", "ASORBING MEEEE", "AHHHHHHHHH THE FIRE IS ASORBING MY BODY", "MY BODY IS AS HOT AS HELLLLL"}
 
 local function sendMessage(text)
     ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(text, "All")
